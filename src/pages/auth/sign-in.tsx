@@ -1,3 +1,70 @@
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@radix-ui/react-label'
+import { Link } from 'react-router-dom'
+import { zodResolver } from '@hookform/resolvers/zod'
+import z from 'zod'
+import { useForm } from 'react-hook-form'
+
+const signInFormSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+})
+
+type SignInFormType = z.infer<typeof signInFormSchema>
+
 export function SignIn() {
-  return <div>SignIn</div>
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm<SignInFormType>({
+    resolver: zodResolver(signInFormSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  })
+  function handleSignIn(data: SignInFormType) {
+    try {
+      console.log(data)
+    } catch (error) {
+      console.log(errors)
+    }
+  }
+  return (
+    <>
+      <div className="p-8">
+        <Button variant="ghost" asChild className="absolute right-8 top-8">
+          <Link to="/sign-up">Register</Link>
+        </Button>
+        <div className="flex w-[350px] flex-col justify-center gap-6">
+          <h1 className="text-2xl font-semibold tracking-tight text-center">
+            Sign In
+          </h1>
+
+          <form className="space-y-4" onSubmit={handleSubmit(handleSignIn)}>
+            <div className="space-y-2">
+              <Label htmlFor="email">Your e-mail</Label>
+              <Input id="email" type="email" {...register('email')} />
+              {errors.email && (
+                <p className="text-red-500">{errors.email.message}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Your password</Label>
+              <Input id="password" type="password" {...register('password')} />
+              {errors.password && (
+                <p className="text-red-500">{errors.password.message}</p>
+              )}
+            </div>
+            <Button className="w-full" type="submit" disabled={isSubmitting}>
+              Enter
+            </Button>
+          </form>
+        </div>
+      </div>
+      <h1>SignIn</h1>
+    </>
+  )
 }
