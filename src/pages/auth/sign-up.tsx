@@ -2,9 +2,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@radix-ui/react-label'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
+import { UsersContext } from '@/contexts/userContext'
+import { useContext } from 'react'
+import { toast } from 'sonner'
 
 const signUpFormSchema = z.object({
   name: z.string().min(1),
@@ -15,9 +18,13 @@ const signUpFormSchema = z.object({
 type SignUpFormType = z.infer<typeof signUpFormSchema>
 
 export function SignUp() {
+  const { createUser, users } = useContext(UsersContext)
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting, errors },
   } = useForm<SignUpFormType>({
     resolver: zodResolver(signUpFormSchema),
@@ -27,11 +34,26 @@ export function SignUp() {
       password: '',
     },
   })
-  function handleSignUp(data: SignUpFormType) {
+  async function handleCreateNewUser(data: SignUpFormType) {
+    const { email, name, password } = data
+
+    if (users.some((user) => user.email === email)) {
+      toast.error('Email already in use')
+      return
+    }
     try {
-      console.log(data)
+      await createUser({ email, name, password })
+      reset()
+      toast.success('User registered successfully!', {
+        action: {
+          label: 'Login',
+          onClick: () => {
+            navigate('/sign-in')
+          },
+        },
+      })
     } catch (error) {
-      console.log(errors)
+      toast.error('Error when trying to register')
     }
   }
   return (
@@ -45,7 +67,10 @@ export function SignUp() {
             Create account
           </h1>
 
-          <form className="space-y-4" onSubmit={handleSubmit(handleSignUp)}>
+          <form
+            className="space-y-4"
+            onSubmit={handleSubmit(handleCreateNewUser)}
+          >
             <div className="space-y-2">
               <Label htmlFor="name">Your name</Label>
               <Input id="name" type="text" {...register('name')} />
