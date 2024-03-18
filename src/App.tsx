@@ -6,11 +6,9 @@ import { Toaster } from 'sonner'
 
 export function App() {
   return (
-    <div>
-      <UsersProvider>
-        <Toaster richColors />
-        <RouterProvider router={router} />
-      </UsersProvider>
-    </div>
+    <UsersProvider>
+      <Toaster richColors />
+      <RouterProvider router={router} />
+    </UsersProvider>
   )
 }

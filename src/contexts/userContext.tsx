@@ -1,7 +1,7 @@
 import { api } from '@/lib/axios'
 import { createContext, useEffect, useState } from 'react'
 
-interface User {
+export interface User {
   id: number
   name: string
   email: string
