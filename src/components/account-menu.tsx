@@ -7,8 +7,10 @@ import {
 import { DropdownMenu, DropdownMenuContent } from './ui/dropdown-menu'
 import { Button } from './ui/button'
 import { ChevronDown, LogOut, UserCog } from 'lucide-react'
+import { useAuth } from '@/hooks/useAuth'
 
 export function AccountMenu() {
+  const { signOut } = useAuth()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -32,7 +34,10 @@ export function AccountMenu() {
           <UserCog className="mr-2 size-4" />
           <span>Edit User</span>
         </DropdownMenuItem>
-        <DropdownMenuItem className="dark:text-0 flex items-center text-rose-500">
+        <DropdownMenuItem
+          onClick={signOut}
+          className="dark:text-0 flex items-center text-rose-500 cursor-pointer"
+        >
           <LogOut className="mr-2 size-4" />
           <span>Logout</span>
         </DropdownMenuItem>
