@@ -1,10 +1,13 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@radix-ui/react-label'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
 import { useForm } from 'react-hook-form'
+import { useContext } from 'react'
+import { UsersContext } from '@/contexts/userContext'
+import { toast } from 'sonner'
 
 const signInFormSchema = z.object({
   email: z.string().email(),
@@ -14,6 +17,9 @@ const signInFormSchema = z.object({
 type SignInFormType = z.infer<typeof signInFormSchema>
 
 export function SignIn() {
+  const { users } = useContext(UsersContext)
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -25,11 +31,33 @@ export function SignIn() {
       password: '',
     },
   })
-  function handleSignIn(data: SignInFormType) {
+  async function handleSignIn(data: SignInFormType) {
     try {
-      console.log(data)
+      let userExists = false
+      let passwordCorrect = false
+
+      users.forEach((user) => {
+        if (user.email === data.email) {
+          userExists = true
+          if (user.password === data.password) {
+            passwordCorrect = true
+          }
+        }
+      })
+
+      if (userExists) {
+        if (passwordCorrect) {
+          toast.success('User signed in successfully!')
+          sessionStorage.setItem('user-auth', data.email)
+          navigate('/')
+        } else {
+          toast.error('Wrong password')
+        }
+      } else {
+        toast.error('Wrong email')
+      }
     } catch (error) {
-      console.log(errors)
+      toast.error('Error')
     }
   }
   return (
