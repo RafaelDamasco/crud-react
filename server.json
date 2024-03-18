@@ -1,5 +1,31 @@
 {
-  "users" : [
-    
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "asda@gmal.com",
+      "createdAt": "2024-03-08T17:29:13.383Z"
+    },
+    {
+      "id": "773a",
+      "email": "teste@teste.com",
+      "name": "teste",
+      "password": "asdadadasdsadasdsa",
+      "createdAt": "2024-03-18T14:36:15.128Z"
+    },
+    {
+      "id": "3158",
+      "email": "teste@teste.com",
+      "name": "teste",
+      "password": "adsadsadasdas",
+      "createdAt": "2024-03-18T14:42:12.147Z"
+    },
+    {
+      "id": "9250",
+      "email": "test123123e@teste.com",
+      "name": "tes",
+      "password": "adsadsadasdsa",
+      "createdAt": "2024-03-18T14:51:58.109Z"
+    }
   ]
 }
