@@ -7,8 +7,11 @@ import {
 } from '@/components/ui/table'
 import { UserTableRow } from './user-table-row'
 import { UserTableFilters } from './user-table-filters'
+import { UsersContext } from '@/contexts/userContext'
+import { useContext } from 'react'
 
 export function Users() {
+  const { users } = useContext(UsersContext)
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-3xl font-bold tracking-tight">Users</h1>
@@ -26,8 +29,8 @@ export function Users() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {Array.from({ length: 10 }).map((_, index) => (
-                <UserTableRow key={index} />
+              {users?.map((user, index) => (
+                <UserTableRow key={index} user={user} />
               ))}
             </TableBody>
           </Table>
