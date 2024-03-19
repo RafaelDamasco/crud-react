@@ -1,10 +1,11 @@
 import {
+  DropdownMenu,
+  DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu'
-import { DropdownMenu, DropdownMenuContent } from './ui/dropdown-menu'
+} from './ui/dropdown-menu'
 import { Button } from './ui/button'
 import { ChevronDown, LogOut, UserCog } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
@@ -28,7 +29,7 @@ export function AccountMenu() {
           <ChevronDown className="size-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent align="end" className="w-56 space-y-1">
         <DropdownMenuLabel className="flex flex-col">
           <span>{authenticatedUser?.name}</span>
           <span className="text-xs font-normal text-muted-foreground">
@@ -36,12 +37,9 @@ export function AccountMenu() {
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <Dialog>
-            <DialogTrigger
-              onClick={(event) => event.stopPropagation()}
-              className="flex items-center"
-            >
+            <DialogTrigger className="flex items-center py-1.5 px-2 w-full">
               <UserCog className="mr-2 size-4" />
               <span>Edit User</span>
             </DialogTrigger>
