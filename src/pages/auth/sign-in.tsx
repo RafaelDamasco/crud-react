@@ -89,7 +89,6 @@ export function SignIn() {
           </form>
         </div>
       </div>
-      <h1>SignIn</h1>
     </>
   )
 }

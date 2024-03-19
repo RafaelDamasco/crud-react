@@ -59,6 +59,9 @@ export function UserRegister() {
   }
   return (
     <DialogContent>
+      <h1 className="text-2xl font-semibold tracking-tight text-center">
+        Create account
+      </h1>
       <form className="space-y-4" onSubmit={handleSubmit(handleCreateNewUser)}>
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
