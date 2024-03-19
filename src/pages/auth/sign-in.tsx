@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@radix-ui/react-label'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
 import { useForm } from 'react-hook-form'
@@ -63,9 +63,6 @@ export function SignIn() {
   return (
     <>
       <div className="p-8">
-        <Button variant="ghost" asChild className="absolute right-8 top-8">
-          <Link to="/sign-up">Register</Link>
-        </Button>
         <div className="flex w-[350px] flex-col justify-center gap-6">
           <h1 className="text-2xl font-semibold tracking-tight text-center">
             Sign In

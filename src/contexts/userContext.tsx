@@ -14,6 +14,11 @@ interface CreateUserInput {
   email: string
   name: string
   password: string
+}
+interface EditUserInput {
+  email: string
+  name: string
+  password: string
   permission: 'ADMIN' | 'USER'
   createdAt: string
 }
@@ -26,7 +31,7 @@ interface UsersContextProps {
   getUsers: (query?: string) => Promise<void>
   createUser: (data: CreateUserInput) => Promise<void>
   deleteUser: (id: number) => Promise<void>
-  updateUser: (id: number, data: CreateUserInput) => Promise<void>
+  updateUser: (id: number, data: EditUserInput) => Promise<void>
 }
 export const UsersContext = createContext({} as UsersContextProps)
 
@@ -63,7 +68,7 @@ export function UsersProvider({ children }: UsersProviderProps) {
     setUsers((prev) => prev.filter((user) => user.id !== id))
   }
 
-  async function updateUser(id: number, data: CreateUserInput) {
+  async function updateUser(id: number, data: EditUserInput) {
     const { email, name, password, permission, createdAt } = data
     const response = await api.put(`users/${id}`, {
       email,

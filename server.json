@@ -15,6 +15,22 @@
       "permission": "USER",
       "createdAt": "2024-03-19T19:52:04.091Z",
       "id": "eXVKcQX"
+    },
+    {
+      "email": "ana@teste.com",
+      "name": "ana paula",
+      "password": "ana12345",
+      "permission": "USER",
+      "createdAt": "2024-03-19T20:19:23.005Z",
+      "id": "kfoyzyr"
+    },
+    {
+      "email": "anap@teste.com",
+      "name": "Ana Paula",
+      "password": "asdadsadsada",
+      "permission": "USER",
+      "createdAt": "2024-03-19T20:20:09.917Z",
+      "id": "UAmws9w"
     }
   ]
 }
