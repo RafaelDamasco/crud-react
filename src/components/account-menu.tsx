@@ -11,7 +11,7 @@ import { useAuth } from '@/hooks/useAuth'
 
 export function AccountMenu() {
   const { signOut, getAuthenticatedUser } = useAuth()
-  const user = getAuthenticatedUser()
+  const authenticatedUser = getAuthenticatedUser()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -19,15 +19,15 @@ export function AccountMenu() {
           variant="outline"
           className="flex select-none items-center gap-2"
         >
-          Welcome, {user?.name}
+          Welcome, {authenticatedUser?.name}
           <ChevronDown className="size-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="flex flex-col">
-          <span>{user?.name}</span>
+          <span>{authenticatedUser?.name}</span>
           <span className="text-xs font-normal text-muted-foreground">
-            {user?.email}
+            {authenticatedUser?.email}
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

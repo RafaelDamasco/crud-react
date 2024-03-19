@@ -1,12 +1,20 @@
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { TableRow, TableCell } from '@/components/ui/table'
-import { User } from '@/contexts/userContext'
+import { User, UsersContext } from '@/contexts/userContext'
+import { useAuth } from '@/hooks/useAuth'
 import { X, Search, Edit } from 'lucide-react'
+import { useContext, useState } from 'react'
+import { UserEdit } from './user-edit'
 
 interface UserTableRowProps {
   user: User
 }
 export function UserTableRow({ user }: UserTableRowProps) {
+  const { deleteUser } = useContext(UsersContext)
+  const { getAuthenticatedUser } = useAuth()
+  const authenticatedUser = getAuthenticatedUser()
+  const [openModal, setOpenModal] = useState<boolean>(false)
   return (
     <TableRow>
       <TableCell>
@@ -18,16 +26,26 @@ export function UserTableRow({ user }: UserTableRowProps) {
       <TableCell className="font-mono text-xs font-medium">{user.id}</TableCell>
       <TableCell className="font-medium">{user.name}</TableCell>
       <TableCell>
-        <Button variant="ghost" size="xs">
-          <Edit className="mr-2 size-3" />
-          Edit
-        </Button>
+        {authenticatedUser?.permission === 'ADMIN' && (
+          <Dialog open={openModal} onOpenChange={setOpenModal}>
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="xs">
+                <Edit className="mr-2 size-3" />
+                Edit
+              </Button>
+            </DialogTrigger>
+
+            <UserEdit user={user} setOpenModal={setOpenModal} />
+          </Dialog>
+        )}
       </TableCell>
       <TableCell>
-        <Button variant="ghost" size="xs">
-          <X className="mr-2 size-3" />
-          Delete
-        </Button>
+        {authenticatedUser?.permission === 'ADMIN' && (
+          <Button variant="ghost" size="xs" onClick={() => deleteUser(user.id)}>
+            <X className="mr-2 size-3" />
+            Delete
+          </Button>
+        )}
       </TableCell>
     </TableRow>
   )
