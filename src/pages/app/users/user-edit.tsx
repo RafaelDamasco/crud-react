@@ -44,8 +44,15 @@ export function UserEdit({ user, setOpenModal }: UserEditPros) {
 
   async function handleEditUser(data: EditUserFormType) {
     const { email, name, password } = data
+    const { permission, createdAt } = user
     try {
-      await updateUser(user.id, { email, name, password })
+      await updateUser(user.id, {
+        email,
+        name,
+        password,
+        permission,
+        createdAt,
+      })
       toast.success('User updated successfully!')
       setOpenModal(false)
     } catch (error) {
