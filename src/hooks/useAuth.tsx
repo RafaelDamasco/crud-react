@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
+import { User, UsersContext } from '@/contexts/userContext'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export function useAuth() {
+  const { users } = useContext(UsersContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -11,6 +13,12 @@ export function useAuth() {
     }
   }, [])
 
+  const getAuthenticatedUser = (): User | null => {
+    const userAuth = sessionStorage.getItem('user-auth')
+    const user = users.find((user: User) => user.email === userAuth)
+    return user || null
+  }
+
   const signOut = () => {
     sessionStorage.removeItem('user-auth')
     navigate('/sign-in')
@@ -19,5 +27,6 @@ export function useAuth() {
   return {
     isAuthenticated: !!sessionStorage.getItem('user-auth'),
     signOut,
+    getAuthenticatedUser,
   }
 }
