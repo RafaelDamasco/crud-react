@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const searchFormSchema = z.object({
-  query: z.string(),
+  query: z.string().optional(),
 })
 
 type SearchFormInputs = z.infer<typeof searchFormSchema>
