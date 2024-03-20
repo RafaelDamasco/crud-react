@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "dev:server": "json-server server.json -p 3333 -w",
     "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "start": "concurrently \"npm run dev:server\" \"npm run dev\""
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
