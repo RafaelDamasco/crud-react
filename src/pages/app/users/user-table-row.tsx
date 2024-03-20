@@ -40,12 +40,17 @@ export function UserTableRow({ user }: UserTableRowProps) {
         )}
       </TableCell>
       <TableCell>
-        {authenticatedUser?.permission === 'ADMIN' && (
-          <Button variant="ghost" size="xs" onClick={() => deleteUser(user.id)}>
-            <X className="mr-2 size-3" />
-            Delete
-          </Button>
-        )}
+        {authenticatedUser?.permission === 'ADMIN' &&
+          user.permission !== 'ADMIN' && (
+            <Button
+              variant="ghost"
+              size="xs"
+              onClick={() => deleteUser(user.id)}
+            >
+              <X className="mr-2 size-3" />
+              Delete
+            </Button>
+          )}
       </TableCell>
     </TableRow>
   )
