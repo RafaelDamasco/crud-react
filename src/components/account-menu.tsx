@@ -38,7 +38,7 @@ export function AccountMenu() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Dialog>
+          <Dialog open={openModal} onOpenChange={setOpenModal}>
             <DialogTrigger className="flex items-center py-1.5 px-2 w-full">
               <UserCog className="mr-2 size-4" />
               <span>Edit User</span>
