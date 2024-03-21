@@ -1,7 +1,15 @@
 import { User2Icon } from 'lucide-react'
-import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 export function AuthLayout() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const userAuth = sessionStorage.getItem('user-auth')
+
+    !userAuth ? navigate('/sign-in') : navigate('/')
+  }, [])
   return (
     <div className="grid min-h-screen grid-cols-2 antialiased">
       <div className="flex h-full flex-col justify-between border-r border-foreground/5 bg-muted p-10 text-muted-foreground">
