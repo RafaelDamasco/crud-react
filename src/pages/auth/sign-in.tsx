@@ -1,13 +1,13 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@radix-ui/react-label'
-import { useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
 import { useForm } from 'react-hook-form'
 import { useContext } from 'react'
 import { UsersContext } from '@/contexts/userContext'
 import { toast } from 'sonner'
+import { useAuth } from '@/hooks/useAuth'
 
 const signInFormSchema = z.object({
   email: z.string().email(),
@@ -18,8 +18,7 @@ type SignInFormType = z.infer<typeof signInFormSchema>
 
 export function SignIn() {
   const { users } = useContext(UsersContext)
-  const navigate = useNavigate()
-
+  const { signIn } = useAuth()
   const {
     register,
     handleSubmit,
@@ -48,8 +47,7 @@ export function SignIn() {
       if (userExists) {
         if (passwordCorrect) {
           toast.success('User signed in successfully!')
-          sessionStorage.setItem('user-auth', data.email)
-          navigate('/')
+          signIn(data.email)
         } else {
           toast.error('Wrong password')
         }
