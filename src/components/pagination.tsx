@@ -5,12 +5,12 @@ import {
   ChevronsRight,
 } from 'lucide-react'
 import { Button } from './ui/button'
+import { useState } from 'react'
 
 interface PaginationProps {
   currentPage: number
   setCurrentPage: (page: number) => void
   perPage: number
-  setItemsPerPage: (count: number) => void
   totalItems: number
 }
 
@@ -18,9 +18,10 @@ export function Pagination({
   currentPage,
   setCurrentPage,
   perPage,
-  setItemsPerPage,
   totalItems,
 }: PaginationProps) {
+  const [itemsPerPage, setItemsPerPage] = useState(5)
+
   const pages = Math.ceil(totalItems / perPage) || 1
   const goToFirstPage = () => {
     setCurrentPage(1)
