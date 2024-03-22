@@ -6,7 +6,6 @@ import { UsersContext } from '@/contexts/userContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -20,7 +19,6 @@ type SignUpFormType = z.infer<typeof signUpFormSchema>
 
 export function UserRegister() {
   const { createUser, users } = useContext(UsersContext)
-  const navigate = useNavigate()
 
   const {
     register,
@@ -45,14 +43,7 @@ export function UserRegister() {
     try {
       await createUser({ email, name, password })
       reset()
-      toast.success('User registered successfully!', {
-        action: {
-          label: 'Login',
-          onClick: () => {
-            navigate('/sign-in')
-          },
-        },
-      })
+      toast.success('User registered successfully!')
     } catch (error) {
       toast.error('Error when trying to register')
     }

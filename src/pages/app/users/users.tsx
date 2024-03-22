@@ -8,14 +8,22 @@ import {
 import { UserTableRow } from './user-table-row'
 import { UserTableFilters } from './user-table-filters'
 import { UsersContext } from '@/contexts/userContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { UserPlusIcon } from 'lucide-react'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { UserRegister } from './user-register'
+import { Pagination } from '@/components/pagination'
 
 export function Users() {
   const { users } = useContext(UsersContext)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(5)
+  const perPage = 5
+  const startIndex = (currentPage - 1) * perPage
+  const endIndex = startIndex + perPage
+  const usersOnCurrentPage = users.slice(startIndex, endIndex)
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-3xl font-bold tracking-tight">Users</h1>
@@ -44,7 +52,7 @@ export function Users() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {users?.map((user) => (
+              {usersOnCurrentPage.map((user) => (
                 <UserTableRow
                   key={`${user.id}-${user.name}-${user.email}`}
                   user={user}
@@ -53,6 +61,13 @@ export function Users() {
             </TableBody>
           </Table>
         </div>
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          perPage={perPage}
+          setItemsPerPage={setItemsPerPage}
+          totalItems={users.length}
+        />
       </div>
     </div>
   )

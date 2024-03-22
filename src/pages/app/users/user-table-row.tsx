@@ -13,6 +13,10 @@ export function UserTableRow({ user }: UserTableRowProps) {
   const { deleteUser, authenticatedUser } = useContext(UsersContext)
   const [openModal, setOpenModal] = useState<boolean>(false)
 
+  async function handleDeleteUser(id: number) {
+    await deleteUser(id)
+  }
+
   return (
     <TableRow>
       <TableCell>
@@ -43,7 +47,7 @@ export function UserTableRow({ user }: UserTableRowProps) {
             <Button
               variant="ghost"
               size="xs"
-              onClick={() => deleteUser(user.id)}
+              onClick={() => handleDeleteUser(user.id)}
             >
               <X className="mr-2 size-3" />
               Delete
