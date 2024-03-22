@@ -44,8 +44,11 @@ export function Users() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {users?.map((user, index) => (
-                <UserTableRow key={index} user={user} />
+              {users?.map((user) => (
+                <UserTableRow
+                  key={`${user.id}-${user.name}-${user.email}`}
+                  user={user}
+                />
               ))}
             </TableBody>
           </Table>

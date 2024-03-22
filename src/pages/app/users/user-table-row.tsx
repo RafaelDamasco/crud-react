@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { TableRow, TableCell } from '@/components/ui/table'
 import { User, UsersContext } from '@/contexts/userContext'
-import { useAuth } from '@/hooks/useAuth'
 import { X, Search, Edit } from 'lucide-react'
 import { useContext, useState } from 'react'
 import { UserEdit } from './user-edit'
@@ -11,10 +10,9 @@ interface UserTableRowProps {
   user: User
 }
 export function UserTableRow({ user }: UserTableRowProps) {
-  const { deleteUser } = useContext(UsersContext)
-  const { getAuthenticatedUser } = useAuth()
-  const authenticatedUser = getAuthenticatedUser()
+  const { deleteUser, authenticatedUser } = useContext(UsersContext)
   const [openModal, setOpenModal] = useState<boolean>(false)
+
   return (
     <TableRow>
       <TableCell>

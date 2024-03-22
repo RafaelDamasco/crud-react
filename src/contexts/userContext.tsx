@@ -28,15 +28,38 @@ interface UsersProviderProps {
 }
 interface UsersContextProps {
   users: User[]
+  authenticatedUser: User
   getUsers: (query?: string) => Promise<void>
   createUser: (data: CreateUserInput) => Promise<void>
   deleteUser: (id: number) => Promise<void>
   updateUser: (id: number, data: EditUserInput) => Promise<void>
+  signIn: (user: User) => void
+  signOut: () => void
 }
 export const UsersContext = createContext({} as UsersContextProps)
 
 export function UsersProvider({ children }: UsersProviderProps) {
   const [users, setUsers] = useState<User[]>([])
+  const [authenticatedUser, setAuthenticatedUser] = useState<User>({} as User)
+
+  async function getAuthenticatedUser() {
+    const userAuth = sessionStorage.getItem('user-auth')
+    const user = users.find((user: User) => user.email === userAuth)
+    if (user) {
+      signIn(user)
+    }
+  }
+
+  const signIn = (user: User) => {
+    const { email } = user
+    sessionStorage.setItem('user-auth', email)
+    setAuthenticatedUser(user)
+  }
+
+  const signOut = () => {
+    sessionStorage.removeItem('user-auth')
+    setAuthenticatedUser({} as User)
+  }
 
   async function getUsers(query?: string) {
     const response = await api.get('users', {
@@ -46,9 +69,14 @@ export function UsersProvider({ children }: UsersProviderProps) {
     })
     setUsers(response.data)
   }
+
   useEffect(() => {
     getUsers()
-  }, [])
+  }, [setUsers])
+
+  useEffect(() => {
+    getAuthenticatedUser()
+  }, [users])
 
   async function createUser(data: CreateUserInput) {
     const { email, name, password } = data
@@ -84,7 +112,16 @@ export function UsersProvider({ children }: UsersProviderProps) {
 
   return (
     <UsersContext.Provider
-      value={{ users, getUsers, createUser, deleteUser, updateUser }}
+      value={{
+        users,
+        authenticatedUser,
+        getUsers,
+        createUser,
+        deleteUser,
+        updateUser,
+        signIn,
+        signOut,
+      }}
     >
       {children}
     </UsersContext.Provider>

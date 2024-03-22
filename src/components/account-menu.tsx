@@ -8,16 +8,21 @@ import {
 } from './ui/dropdown-menu'
 import { Button } from './ui/button'
 import { ChevronDown, LogOut, UserCog } from 'lucide-react'
-import { useAuth } from '@/hooks/useAuth'
 import { UserEdit } from '@/pages/app/users/user-edit'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { UsersContext } from '@/contexts/userContext'
+import { useNavigate } from 'react-router-dom'
 
 export function AccountMenu() {
-  const { signOut, getAuthenticatedUser } = useAuth()
-  const authenticatedUser = getAuthenticatedUser()
+  const { authenticatedUser, signOut } = useContext(UsersContext)
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const navigate = useNavigate()
 
+  function handleSignOut() {
+    signOut()
+    navigate('/sign-in')
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,11 +49,11 @@ export function AccountMenu() {
               <span>Edit User</span>
             </DialogTrigger>
 
-            <UserEdit user={authenticatedUser!} setOpenModal={setOpenModal} />
+            <UserEdit user={authenticatedUser} setOpenModal={setOpenModal} />
           </Dialog>
         </DropdownMenuItem>
         <DropdownMenuItem
-          onClick={signOut}
+          onClick={handleSignOut}
           className="dark:text-0 flex items-center text-rose-500 cursor-pointer"
         >
           <LogOut className="mr-2 size-4" />

@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { useContext } from 'react'
 import { UsersContext } from '@/contexts/userContext'
 import { toast } from 'sonner'
-import { useAuth } from '@/hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const signInFormSchema = z.object({
   email: z.string().email(),
@@ -17,8 +17,9 @@ const signInFormSchema = z.object({
 type SignInFormType = z.infer<typeof signInFormSchema>
 
 export function SignIn() {
-  const { users } = useContext(UsersContext)
-  const { signIn } = useAuth()
+  const { users, signIn } = useContext(UsersContext)
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -30,24 +31,25 @@ export function SignIn() {
       password: '',
     },
   })
-  async function handleSignIn(data: SignInFormType) {
+  function handleSignIn(data: SignInFormType) {
     try {
       let userExists = false
       let passwordCorrect = false
-
+      let userAuth
       users.forEach((user) => {
         if (user.email === data.email) {
           userExists = true
           if (user.password === data.password) {
             passwordCorrect = true
+            userAuth = user
           }
         }
       })
-
       if (userExists) {
         if (passwordCorrect) {
           toast.success('User signed in successfully!')
-          signIn(data.email)
+          signIn(userAuth!)
+          navigate('/')
         } else {
           toast.error('Wrong password')
         }
