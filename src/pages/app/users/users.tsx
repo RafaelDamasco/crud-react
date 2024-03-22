@@ -18,7 +18,6 @@ import { Pagination } from '@/components/pagination'
 export function Users() {
   const { users } = useContext(UsersContext)
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(5)
   const perPage = 5
   const startIndex = (currentPage - 1) * perPage
   const endIndex = startIndex + perPage
@@ -65,7 +64,6 @@ export function Users() {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           perPage={perPage}
-          setItemsPerPage={setItemsPerPage}
           totalItems={users.length}
         />
       </div>
