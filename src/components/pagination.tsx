@@ -20,6 +20,7 @@ export function Pagination({
   perPage,
   totalItems,
 }: PaginationProps) {
+  // eslint-disable-next-line
   const [itemsPerPage, setItemsPerPage] = useState(5)
 
   const pages = Math.ceil(totalItems / perPage) || 1
