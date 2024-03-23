@@ -41,7 +41,6 @@ export const UsersContext = createContext({} as UsersContextProps)
 export function UsersProvider({ children }: UsersProviderProps) {
   const [users, setUsers] = useState<User[]>([])
   const [authenticatedUser, setAuthenticatedUser] = useState<User>({} as User)
-  console.log(users)
   async function getAuthenticatedUser() {
     const userAuth = sessionStorage.getItem('user-auth')
     const user = users.find((user: User) => user.email === userAuth)
@@ -57,7 +56,6 @@ export function UsersProvider({ children }: UsersProviderProps) {
       email,
       password,
     })
-    console.log(response)
 
     sessionStorage.setItem('user-auth', email)
     setAuthenticatedUser(response.data.user)
@@ -95,7 +93,6 @@ export function UsersProvider({ children }: UsersProviderProps) {
       permission: 'USER',
       createdAt: new Date(),
     })
-    console.log(response)
     setUsers((prev) => [...prev, response.data.user])
   }
 

@@ -14,7 +14,7 @@ const signInFormSchema = z.object({
   password: z.string().min(6),
 })
 
-type SignInFormType = z.infer<typeof signInFormSchema>
+export type SignInFormType = z.infer<typeof signInFormSchema>
 
 export function SignIn() {
   const { signIn } = useContext(UsersContext)
