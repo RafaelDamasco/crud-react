@@ -103,7 +103,7 @@ export function UsersProvider({ children }: UsersProviderProps) {
 
   async function updateUser(id: number, data: EditUserInput) {
     const { email, name, password, permission, createdAt } = data
-    const response = await api.put(`users/${id}`, {
+    await api.put(`users/${id}`, {
       email,
       name,
       password,
@@ -111,7 +111,7 @@ export function UsersProvider({ children }: UsersProviderProps) {
       createdAt,
     })
     setUsers((prev) =>
-      prev.map((user) => (user.id === id ? response.data : user)),
+      prev.map((user) => (user.id === id ? { ...data, id: user.id } : user)),
     )
   }
 
