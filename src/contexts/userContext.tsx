@@ -33,7 +33,7 @@ interface UsersContextProps {
   createUser: (data: CreateUserInput) => Promise<void>
   deleteUser: (id: number) => Promise<void>
   updateUser: (id: number, data: EditUserInput) => Promise<void>
-  signIn: (user: User) => void
+  signIn: (email: string, password: string) => void
   signOut: () => void
 }
 export const UsersContext = createContext({} as UsersContextProps)
@@ -41,19 +41,26 @@ export const UsersContext = createContext({} as UsersContextProps)
 export function UsersProvider({ children }: UsersProviderProps) {
   const [users, setUsers] = useState<User[]>([])
   const [authenticatedUser, setAuthenticatedUser] = useState<User>({} as User)
-
+  console.log(users)
   async function getAuthenticatedUser() {
     const userAuth = sessionStorage.getItem('user-auth')
     const user = users.find((user: User) => user.email === userAuth)
     if (user) {
-      signIn(user)
+      const { email } = user
+      sessionStorage.setItem('user-auth', email)
+      setAuthenticatedUser(user)
     }
   }
 
-  const signIn = (user: User) => {
-    const { email } = user
+  async function signIn(email: string, password: string) {
+    const response = await api.post('login', {
+      email,
+      password,
+    })
+    console.log(response)
+
     sessionStorage.setItem('user-auth', email)
-    setAuthenticatedUser(user)
+    setAuthenticatedUser(response.data.user)
   }
 
   const signOut = () => {
@@ -81,14 +88,15 @@ export function UsersProvider({ children }: UsersProviderProps) {
   async function createUser(data: CreateUserInput) {
     const { email, name, password } = data
 
-    const response = await api.post('users', {
+    const response = await api.post('register', {
       email,
       name,
       password,
       permission: 'USER',
       createdAt: new Date(),
     })
-    setUsers((prev) => [...prev, response.data])
+    console.log(response)
+    setUsers((prev) => [...prev, response.data.user])
   }
 
   async function deleteUser(id: number) {

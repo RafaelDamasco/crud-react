@@ -1,92 +1,52 @@
 {
   "users": [
     {
-      "email": "admin@admin.com",
-      "name": "Rafael Euclides Damasco",
-      "password": "admin123",
+      "email": "ana@ana.com",
+      "name": "ana p",
+      "password": "$2a$10$mzyubreTZYbKRBhqVXGhL.abIkiwnmpH7qOlY6OK/MI2ecrTxmljG",
       "permission": "ADMIN",
-      "createdAt": "2024-03-19T19:53:44.078Z",
-      "id": "773a"
+      "createdAt": "2024-03-23T18:29:30.333Z",
+      "id": "N-Uv5wI"
     },
     {
-      "email": "asdasd@gc.com",
-      "name": "asdasdas",
-      "password": "asdasdasdasdas",
-      "permission": "USER",
-      "createdAt": "2024-03-22T13:02:31.646Z",
-      "id": "uIObbVq"
-    },
-    {
-      "email": "rafaeldamasdasdasco_@hotmail.com",
+      "email": "rafaeldamasco_@hotmail.com",
+      "password": "$2a$10$Zx38BBDPwym/edIkGqkuLumpQUhbdu1534KXIbcdq2WUNAS/woSsK",
       "name": "Rafael Euclides",
-      "password": "asdasd",
       "permission": "USER",
-      "createdAt": "2024-03-22T14:41:55.032Z",
-      "id": "5vIHyVE"
+      "createdAt": "2024-03-23T18:58:59.510Z",
+      "id": "UTixFRU"
     },
     {
-      "email": "rafaeldamaasdasdasdsco_@hotmail.com",
+      "email": "rafaeldaasasmasco_@hotmail.com",
+      "password": "$2a$10$yCzPgR63jHSQjwsfwYOgg.E.Pl8gGkifyh2UB.BdRz.nK2IxGMG4y",
       "name": "Rafael Euclides",
-      "password": "asdasdasdasd",
       "permission": "USER",
-      "createdAt": "2024-03-22T14:42:09.736Z",
-      "id": "rn9IEv9"
+      "createdAt": "2024-03-23T19:02:19.541Z",
+      "id": "5SLE4HM"
     },
     {
-      "email": "asdasdasdasdasddasasdasdasd@hotmail.com",
-      "name": "Rafael Euclides",
-      "password": "asdasdasdasd",
-      "permission": "USER",
-      "createdAt": "2024-03-22T15:14:29.135Z",
-      "id": "8uPLPln"
-    },
-    {
-      "email": "rafaeasdasdasdasdldamasco_@hotmail.com",
-      "name": "Rafael Euclides",
-      "password": "asdasdasdasdasd",
-      "permission": "USER",
-      "createdAt": "2024-03-22T15:14:34.317Z",
-      "id": "UNWkeRg"
-    },
-    {
-      "email": "asdasdasdasdasdasdasdasdasd@hotmail.com",
-      "name": "Rafael Euclides",
-      "password": "asdasdasdasdasdasd",
-      "permission": "USER",
-      "createdAt": "2024-03-22T15:14:42.060Z",
-      "id": "be03gxj"
-    },
-    {
-      "email": "rafaeldamasco_@hotsssssmail.com",
+      "email": "asdasdasdasdasd@hotmail.com",
+      "password": "$2a$10$vuvrR1Jx2P66sDtv7a2fmuE4lMjs62OSLWjoA9JjkZqL3cvGJggcm",
       "name": "asdasdasdasd",
-      "password": "ssssssssss",
       "permission": "USER",
-      "createdAt": "2024-03-22T16:11:46.130Z",
-      "id": "D6NDYd-"
+      "createdAt": "2024-03-23T19:17:03.327Z",
+      "id": "mA5JVtl"
     },
     {
-      "email": "simonsssse.chatham@successacademies.org",
-      "name": "Rafael Euclides",
-      "password": "sssssssssssssssss",
+      "email": "rafaeldaasdasdasdmasco_@hotmail.com",
+      "password": "$2a$10$GQrSQtfENTaR2V4gqb1.WuIWJjAQOhV6iVUjSX.Ym.EtPCy/ngIga",
+      "name": "sdsd",
       "permission": "USER",
-      "createdAt": "2024-03-22T16:15:51.795Z",
-      "id": "OAYo1hn"
+      "createdAt": "2024-03-23T19:17:07.405Z",
+      "id": "KkYHUVz"
     },
     {
-      "email": "rafaeldamsdasasdasdasdasco_@hotmail.com",
-      "name": "Rafael Euclides",
-      "password": "asdasdasdasdasdasd",
+      "email": "rafaeldsdsdsdamasco_@hotmail.com",
+      "password": "$2a$10$cTQR4KcdjPABRDof6rIHs.L5uquSWerU9IT7BRvn5WBR6vyHivRPm",
+      "name": "asdasdasdasd",
       "permission": "USER",
-      "createdAt": "2024-03-22T16:43:04.235Z",
-      "id": "NTy9rah"
-    },
-    {
-      "email": "rafaeldamsdsdsdsdasco_@hotmail.com",
-      "name": "asdasdasd",
-      "password": "sdsdsdsd",
-      "permission": "USER",
-      "createdAt": "2024-03-22T16:52:58.858Z",
-      "id": "h8KlifF"
+      "createdAt": "2024-03-23T19:17:12.871Z",
+      "id": "YBy1zeM"
     }
   ]
 }

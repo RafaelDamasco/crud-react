@@ -17,7 +17,7 @@ const signInFormSchema = z.object({
 type SignInFormType = z.infer<typeof signInFormSchema>
 
 export function SignIn() {
-  const { users, signIn } = useContext(UsersContext)
+  const { signIn } = useContext(UsersContext)
   const navigate = useNavigate()
 
   const {
@@ -31,33 +31,13 @@ export function SignIn() {
       password: '',
     },
   })
-  function handleSignIn(data: SignInFormType) {
+  async function handleSignIn(data: SignInFormType) {
     try {
-      let userExists = false
-      let passwordCorrect = false
-      let userAuth
-      users.forEach((user) => {
-        if (user.email === data.email) {
-          userExists = true
-          if (user.password === data.password) {
-            passwordCorrect = true
-            userAuth = user
-          }
-        }
-      })
-      if (userExists) {
-        if (passwordCorrect) {
-          toast.success('User signed in successfully!')
-          signIn(userAuth!)
-          navigate('/')
-        } else {
-          toast.error('Wrong password')
-        }
-      } else {
-        toast.error('Wrong email')
-      }
+      await signIn(data.email, data.password)
+      toast.success('User signed in successfully!')
+      navigate('/')
     } catch (error) {
-      toast.error('Error')
+      toast.error('E-mail or password incorrect!')
     }
   }
   return (
