@@ -6,9 +6,20 @@ export const registerUserMock = http.post<never, User>(
   async ({ request }) => {
     const { name } = await request.json()
     if (name === 'Rafael Euclides Damasco') {
-      return new HttpResponse(null, {
-        status: 201,
-      })
+      const user: User = {
+        id: 20,
+        name: 'Rafael Euclides Damasco',
+        email: 'rafael@example.com',
+        password: '',
+        createdAt: new Date().toISOString(),
+        permission: 'ADMIN',
+      }
+      return HttpResponse.json(
+        { user },
+        {
+          status: 201,
+        },
+      )
     } else {
       return new HttpResponse(null, {
         status: 400,
