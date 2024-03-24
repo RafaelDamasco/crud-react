@@ -5,6 +5,7 @@ import { User, UsersContext } from '@/contexts/userContext'
 import { X, Search, Edit } from 'lucide-react'
 import { useContext, useState } from 'react'
 import { UserEdit } from './user-edit'
+import { UserDetails } from './user-details'
 
 interface UserTableRowProps {
   user: User
@@ -20,10 +21,15 @@ export function UserTableRow({ user }: UserTableRowProps) {
   return (
     <TableRow>
       <TableCell>
-        <Button variant="outline" size="xs">
-          <Search className="size-3" />
-          <span className="sr-only">User details</span>
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" size="xs">
+              <Search className="size-3" />
+              <span className="sr-only">User details</span>
+            </Button>
+          </DialogTrigger>
+          <UserDetails user={user} />
+        </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xs font-medium">{user.id}</TableCell>
       <TableCell className="font-medium">{user.name}</TableCell>
@@ -37,7 +43,7 @@ export function UserTableRow({ user }: UserTableRowProps) {
               </Button>
             </DialogTrigger>
 
-            <UserEdit user={user} setOpenModal={setOpenModal} />
+            <UserEdit key={user.id} user={user} setOpenModal={setOpenModal} />
           </Dialog>
         )}
       </TableCell>

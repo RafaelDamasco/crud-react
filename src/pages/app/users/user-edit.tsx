@@ -38,7 +38,7 @@ export function UserEdit({ user, setOpenModal }: UserEditPros) {
     defaultValues: {
       name: user.name,
       email: user.email,
-      password: user.password,
+      password: '',
     },
   })
 
