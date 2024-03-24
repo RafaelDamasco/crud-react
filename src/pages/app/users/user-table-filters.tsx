@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Search } from 'lucide-react'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import { useSearchParams } from 'react-router-dom'
 import { z } from 'zod'
 
 const searchFormSchema = z.object({
@@ -14,6 +15,8 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
 export function UserTableFilters() {
+  // @ts-ignore
+  const [searchParams, setSearchParams] = useSearchParams()
   const { getUsers } = useContext(UsersContext)
   const {
     register,
@@ -23,6 +26,7 @@ export function UserTableFilters() {
     resolver: zodResolver(searchFormSchema),
   })
   async function handleSearchUsers(data: SearchFormInputs) {
+    setSearchParams(data.query ? { query: data.query } : {})
     await getUsers(data.query)
   }
   return (

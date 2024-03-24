@@ -20,6 +20,15 @@ const user: User[] = Array.from({ length: 10 }, (_, index) => {
   }
 })
 
-export const getUsersMock = http.get<never, never, User[]>('/users', () => {
-  return HttpResponse.json([userAdmin, ...user])
+export const getUsersMock = http.get('/users', async ({ request }) => {
+  const { searchParams } = new URL(request.url)
+  const query = searchParams.get('name_like')
+
+  let filteredUsers = [userAdmin, ...user]
+  if (query) {
+    filteredUsers = filteredUsers.filter((user) =>
+      user.name.toLowerCase().includes(query.toLowerCase()),
+    )
+  }
+  return HttpResponse.json(filteredUsers)
 })
