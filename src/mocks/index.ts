@@ -1,10 +1,10 @@
 import { env } from '@/env'
 import { setupWorker } from 'msw/browser'
-import { signInMock } from './sign-in-mock'
-import { registerUserMock } from './register-user.mock'
-import { getUsersMock } from './get-users.mock'
+import { registerUserMock } from './registerUser.mock'
+import { getUsersMock } from './getUsers.mock'
 import { updateUserMock } from './updateUser.mock'
 import { deleteUserMock } from './deleteUser.mock'
+import { signInMock } from './signIn.mock'
 
 export const worker = setupWorker(
   signInMock,

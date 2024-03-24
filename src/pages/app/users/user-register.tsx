@@ -15,7 +15,7 @@ const signUpFormSchema = z.object({
   password: z.string().min(6),
 })
 
-type SignUpFormType = z.infer<typeof signUpFormSchema>
+export type SignUpFormType = z.infer<typeof signUpFormSchema>
 
 export function UserRegister() {
   const { createUser, users } = useContext(UsersContext)
