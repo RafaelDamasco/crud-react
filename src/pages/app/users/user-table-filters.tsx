@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { UsersContext } from '@/contexts/userContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Search } from 'lucide-react'
@@ -34,8 +35,11 @@ export function UserTableFilters() {
       onSubmit={handleSubmit(handleSearchUsers)}
       className="flex items-center gap-2"
     >
-      <span className="text-sm font-semibold">Filters:</span>
+      <Label htmlFor="query" className="text-sm font-semibold">
+        Filters:
+      </Label>
       <Input
+        id="query"
         placeholder="User name"
         className="h-8 w-[320px]"
         {...register('query')}
