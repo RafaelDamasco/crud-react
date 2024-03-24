@@ -47,7 +47,7 @@ export function UserDetails({ user }: UserDetailsProps) {
                 Created At
               </TableCell>
               <TableCell className="flex justify-end">
-                {format(user.createdAt, 'd/MM/y')}
+                {format(new Date(user.createdAt), 'd/MM/y')}
               </TableCell>
             </TableRow>
           </TableBody>
