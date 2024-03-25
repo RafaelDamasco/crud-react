@@ -4,15 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "dev": "vite",
     "dev:server": "json-server server.json -p 3333 -w -m ./node_modules/json-server-auth",
+    "start": "concurrently \"npm run dev:server\" \"npm run dev\"",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "start": "concurrently \"npm run dev:server\" \"npm run dev\"",
     "test": "vitest",
-    "dev:test": "vite --port 3332 --mode test"
+    "dev:test": "vite --port 3332 --mode test",
+    "cy:open": "npx cypress open"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -26,6 +27,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "concurrently": "^8.2.2",
+    "date-fns": "^3.6.0",
     "json-server-auth": "^2.1.0",
     "localforage": "^1.10.0",
     "lucide-react": "^0.358.0",
@@ -49,6 +51,7 @@
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.18",
+    "cypress": "^13.7.1",
     "happy-dom": "^14.2.0",
     "json-server": "^0.17.0",
     "msw": "^2.2.10",
