@@ -1,7 +1,24 @@
 /// <reference types="cypress" />
 
-describe('User edit', () => {
-  it('User not find', () => {
+describe('Create User and edit', () => {
+  it('should create an user', () => {
+    cy.login('ana@ana.com', 'ana123')
+    cy.createUsers('Rafael', 'rafael@rafael.com', 'rafael123')
+    cy.contains('User registered successfully!')
+  })
+
+  it('Should not create an user because the email is already in use', () => {
+    cy.login('ana@ana.com', 'ana123')
+    cy.createUsers('Rafael', 'rafael@rafael.com', 'rafael123')
+    cy.contains('Email already in use')
+  })
+
+  it('Create user for editing', () => {
+    cy.login('ana@ana.com', 'ana123')
+    cy.createUsers('Rafael Teste', 'rafael@subuser.com', 'rafael123')
+  })
+
+  it('Search User and not find', () => {
     cy.login('ana@ana.com', 'ana123')
     cy.contains('Users').click()
     cy.contains('Filters:').type('Lost{enter}')

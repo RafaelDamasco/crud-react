@@ -7,46 +7,6 @@
       "permission": "ADMIN",
       "createdAt": "2024-03-23T18:29:30.333Z",
       "id": "N-Uv5wI"
-    },
-    {
-      "email": "rafaeldamasco_@hotmail.com",
-      "password": "$2a$10$Zx38BBDPwym/edIkGqkuLumpQUhbdu1534KXIbcdq2WUNAS/woSsK",
-      "name": "Rafael Euclides",
-      "permission": "USER",
-      "createdAt": "2024-03-23T18:58:59.510Z",
-      "id": "UTixFRU"
-    },
-    {
-      "email": "rafaeldaasasmasco_@hotmail.com",
-      "password": "$2a$10$yCzPgR63jHSQjwsfwYOgg.E.Pl8gGkifyh2UB.BdRz.nK2IxGMG4y",
-      "name": "Rafael Euclides",
-      "permission": "USER",
-      "createdAt": "2024-03-23T19:02:19.541Z",
-      "id": "5SLE4HM"
-    },
-    {
-      "email": "asdasdasdasdasd@hotmail.com",
-      "password": "$2a$10$vuvrR1Jx2P66sDtv7a2fmuE4lMjs62OSLWjoA9JjkZqL3cvGJggcm",
-      "name": "asdasdasdasd",
-      "permission": "USER",
-      "createdAt": "2024-03-23T19:17:03.327Z",
-      "id": "mA5JVtl"
-    },
-    {
-      "email": "rafaeldaasdasdasdmasco_@hotmail.com",
-      "password": "$2a$10$GQrSQtfENTaR2V4gqb1.WuIWJjAQOhV6iVUjSX.Ym.EtPCy/ngIga",
-      "name": "sdsd",
-      "permission": "USER",
-      "createdAt": "2024-03-23T19:17:07.405Z",
-      "id": "KkYHUVz"
-    },
-    {
-      "email": "rafaeldsdsdsdamasco_@hotmail.com",
-      "password": "$2a$10$cTQR4KcdjPABRDof6rIHs.L5uquSWerU9IT7BRvn5WBR6vyHivRPm",
-      "name": "asdasdasdasd",
-      "permission": "USER",
-      "createdAt": "2024-03-23T19:17:12.871Z",
-      "id": "YBy1zeM"
     }
   ]
 }
