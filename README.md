@@ -122,6 +122,6 @@ https://crud-react-weld-three.vercel.app/
   https://api-storage-eight.vercel.app/
     
 
-
+## 🔨 Video da aplicação em uso
 https://github.com/RafaelDamasco/crud-react/assets/29737013/c737a47c-d440-4e99-9ba1-9ed3267f32f9
 
