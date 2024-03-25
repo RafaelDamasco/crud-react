@@ -4,7 +4,7 @@ describe('SignIn', () => {
     cy.login('ana@ana.com', 'ana123')
   })
 
-  it('not should signed in with wrong e-mail or password incorrect', () => {
+  it('should not signed in with wrong e-mail or password incorrect', () => {
     cy.visit('http://localhost:5173/sign-in')
     cy.get('label').contains('Your e-mail').type('ana@ana.com')
     cy.get('label').contains('Your password').type('AAAAAAAA')
