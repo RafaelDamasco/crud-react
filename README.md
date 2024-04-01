@@ -1,6 +1,4 @@
-# React Crud Softplan
-
-Crud para o desafio tecnico da Softplan
+# React Crud
 
 ## 🔥 Introdução
 
