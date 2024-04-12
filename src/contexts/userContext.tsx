@@ -26,7 +26,7 @@ interface EditUserInput {
 interface UsersProviderProps {
   children: React.ReactNode
 }
-interface UsersContextProps {
+export interface UsersContextProps {
   users: User[]
   authenticatedUser: User
   getUsers: (query?: string) => Promise<void>
